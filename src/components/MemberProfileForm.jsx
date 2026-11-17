@@ -5,6 +5,8 @@ export function MemberProfileForm() {
     const [name, setName] = useState('');
     const [fitnessGoal, setFitnessGoal] = useState('');
     const [error, setError] = useState('');
+    // Store the validated profile object once submitted (null until first valid submit)
+    const [submittedProfile, setSubmittedProfile] = useState('');
 
     const handleSubmit = (e) => {
         // Prevent default browser form submission from reloading the page
@@ -18,6 +20,12 @@ export function MemberProfileForm() {
 
         // Clear any previous validation error once both fields are valid
         setError('');
+
+        // Set submitted profile
+        setSubmittedProfile({
+            name: name.trim(),
+            fitnessGoal: fitnessGoal.trim(),
+        });
     };
 
     return (
@@ -48,6 +56,15 @@ export function MemberProfileForm() {
                 {error && <p>{error}</p>}
 
                 <button type="submit">Submit</button>
+
+                {/* Render submitted profile details below the form once available */}
+                {submittedProfile && (
+                    <div>
+                        <h3>Saved Member Profile</h3>
+                        <p>Name: {submittedProfile.name}</p>
+                        <p>Fitness Goal: {submittedProfile.fitnessGoal}</p>
+                    </div>
+                )}
             </form>
         </div>
     );
