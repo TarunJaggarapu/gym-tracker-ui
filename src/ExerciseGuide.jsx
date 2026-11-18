@@ -16,3 +16,25 @@ const exercises = [
     description:
       "Lie on a bench, lower a barbell to your mid-chest, then press it back up. A staple for building chest, shoulder, and tricep strength.",
   },
+    {
+    id: 3,
+    name: "Deadlift",
+    muscleGroup: "Back",
+    description:
+      "Lift a loaded barbell from the floor to hip height while keeping your back flat. Works the lower back, glutes, and hamstrings.",
+  },
+  {
+    id: 4,
+    name: "Overhead Press",
+    muscleGroup: "Shoulders",
+    description:
+      "Press a barbell or dumbbells from shoulder height to overhead until your arms are fully extended. Targets the shoulders and triceps.",
+  },
+  {
+    id: 5,
+    name: "Plank",
+    muscleGroup: "Core",
+    description:
+      "Hold a push-up position on your forearms with your body in a straight line. Strengthens the abs, obliques, and lower back.",
+  },
+];
