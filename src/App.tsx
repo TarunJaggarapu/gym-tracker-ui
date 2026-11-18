@@ -1,4 +1,4 @@
-
+// @ts-ignore
 import { GymTrackerUI } from './pages/gymtrackerui';
 import WorkoutForm from './WorkoutForm';
 // @ts-ignore
