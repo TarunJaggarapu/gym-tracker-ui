@@ -1,10 +1,18 @@
-import './App.css';
+
+import { GymTrackerUI } from './pages/gymtrackerui';
+import WorkoutForm from './WorkoutForm';
+// @ts-ignore
+import { MemberProfileForm } from './components/MemberProfileForm'
 
 export function App() {
   return (
-    <>
-      <h1>Parcel React App</h1>
-      <p>Edit <code>src/App.tsx</code> to get started!</p>
-    </>
+    <GymTrackerUI>
+      <div>
+      <h2>Gym Workout Tracker</h2>
+      <p>Welcome to the Gym Workout Tracker!</p>
+      <MemberProfileForm />
+      <WorkoutForm />
+      </div>
+    </GymTrackerUI>
   );
 }
