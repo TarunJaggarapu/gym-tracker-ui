@@ -1,11 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import './gymtrackeruimainpage.css';
 
-interface GymTrackerUIProps {
-    children: React.ReactNode;
-}
-
-export function GymTrackerUI({ children }: GymTrackerUIProps) {
+export function GymTrackerUI({ children }) {
     return (
         <div className="layout-container">
             <header className="layout-header">
