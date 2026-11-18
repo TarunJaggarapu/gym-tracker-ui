@@ -38,3 +38,19 @@ const exercises = [
       "Hold a push-up position on your forearms with your body in a straight line. Strengthens the abs, obliques, and lower back.",
   },
 ];
+export function ExerciseGuide() {
+  return (
+    <div>
+      <h2>Exercise Guide</h2>
+
+
+      {exercises.map((exercise) => (
+        <div key={exercise.id}>
+          <h3>{exercise.name}</h3>
+          <p>{exercise.muscleGroup}</p>
+          <p>{exercise.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
