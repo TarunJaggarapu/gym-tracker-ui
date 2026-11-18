@@ -5,14 +5,15 @@ export default function WorkoutForm() {
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
-  function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
-  e.preventDefault();
-  alert(
-  "Exercise: " + exerciseName +
-  "\nSets: " + sets +
-  "\nReps: " + reps +
-  "\nWeight: " + weight + " lbs"
-);
+
+  function handleSubmit(e) {
+   e.preventDefault();
+   alert(
+     "Exercise: " + exerciseName +
+     "\nSets: " + sets +
+     "\nReps: " + reps +
+     "\nWeight: " + weight + " lbs"
+    );
   }
   return (
     <div>

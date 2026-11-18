@@ -1,5 +1,6 @@
 // @ts-ignore
 import { GymTrackerUI } from './pages/gymtrackerui';
+// @ts-ignore
 import WorkoutForm from './WorkoutForm';
 // @ts-ignore
 import { MemberProfileForm } from './components/MemberProfileForm'
