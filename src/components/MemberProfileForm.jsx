@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function MemberProfileForm() {
+export function MemberProfileForm({ onAddMember }) {
     // Track form field values in React state so inputs stay controlled across renders
     const [name, setName] = useState('');
     const [fitnessGoal, setFitnessGoal] = useState('');
@@ -23,6 +23,11 @@ export function MemberProfileForm() {
 
         // Set submitted profile
         setSubmittedProfile({
+            name: name.trim(),
+            fitnessGoal: fitnessGoal.trim(),
+        });
+
+        onAddMember({
             name: name.trim(),
             fitnessGoal: fitnessGoal.trim(),
         });
