@@ -8,6 +8,7 @@ import WorkoutList from './components/WorkoutList';
 export function App() {
   const [members, setMembers] = useState([]);
   const [workouts, setWorkouts] = useState([]);
+  const [selectedMember, setSelectedMember] = useState("");
 
   function addMember(profile) {
     const newMember = {
@@ -31,7 +32,7 @@ export function App() {
 
     setWorkouts([...workouts, newWorkout]);
   }
-  console.log(workouts);
+  
   return (
     <GymTrackerUI>
       <div>
@@ -39,7 +40,7 @@ export function App() {
         <p>Welcome to the Gym Workout Tracker!</p>
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
-        <WorkoutList workouts={workouts} />
+        <WorkoutList members={members} workouts={workouts} />
         <ExerciseGuide />
       </div>
     </GymTrackerUI>

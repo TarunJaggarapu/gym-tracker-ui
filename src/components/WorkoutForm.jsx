@@ -7,6 +7,14 @@ export default function WorkoutForm({ members = [], onAddWorkout }) {
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
 
+  function handleMemberChange(e) {
+  setMember(e.target.value);
+  setExerciseName("");
+  setSets("");
+  setReps("");
+  setWeight("");
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -26,7 +34,7 @@ export default function WorkoutForm({ members = [], onAddWorkout }) {
 
     alert("Workout assigned to " + selectedMember.name);
   }
-  
+
   return (
     <div>
       <h2>Assign Workout</h2>
@@ -37,7 +45,7 @@ export default function WorkoutForm({ members = [], onAddWorkout }) {
           <select
             id="member"
             value={member}
-            onChange={(e) => setMember(e.target.value)}
+            onChange={handleMemberChange}
             required
           >
             <option value="">
