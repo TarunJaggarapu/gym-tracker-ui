@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export default function WorkoutForm() {
+export default function WorkoutForm({ members = [] }) {
+  const [member, setMember] = useState("");
   const [exerciseName, setExerciseName] = useState("");
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
@@ -19,8 +20,26 @@ export default function WorkoutForm() {
     <div>
       <h2>Add Workout</h2>
       <p>Enter your workout details below.</p>
-
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="member">Select Member: </label>
+          <select
+            id="member"
+            value={member}
+            onChange={(e) => setMember(e.target.value)}
+            required
+          >
+            <option value="">
+              {members.length === 0 ? "No members available" : "Select a member"}
+            </option>
+
+            {members.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div>
           <label>Exercise Name: </label>
           <input type="text" placeholder="Enter exercise name" value={exerciseName} onChange={(e) => setExerciseName(e.target.value)} required/>
