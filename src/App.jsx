@@ -1,8 +1,7 @@
 import { GymTrackerUI } from './pages/gymtrackerui';
 import WorkoutForm from './WorkoutForm';
 import { MemberProfileForm } from './components/MemberProfileForm'
-import { ExerciseGuide } from './ExerciseGuide';
-import './ExerciseGuide.css';
+import ExerciseGuide from './ExerciseGuide';
 export function App() {
   return (
     <GymTrackerUI>

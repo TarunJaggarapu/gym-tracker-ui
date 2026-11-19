@@ -1,4 +1,3 @@
-import React from "react";
 import "./ExerciseGuide.css";
 
 const exercises = [
@@ -16,7 +15,7 @@ const exercises = [
     description:
       "Lie on a bench, lower a barbell to your mid-chest, then press it back up. A staple for building chest, shoulder, and tricep strength.",
   },
-    {
+  {
     id: 3,
     name: "Deadlift",
     muscleGroup: "Back",
@@ -38,19 +37,26 @@ const exercises = [
       "Hold a push-up position on your forearms with your body in a straight line. Strengthens the abs, obliques, and lower back.",
   },
 ];
-export function ExerciseGuide() {
+
+function ExerciseGuide() {
   return (
-    <div>
-      <h2>Exercise Guide</h2>
+    <div className="exercise-guide">
+      <h1 className="exercise-guide__title">Exercise Guide</h1>
+      <p className="exercise-guide__subtitle">
+        Learn the basics of popular exercises and the muscles they target.
+      </p>
 
-
-      {exercises.map((exercise) => (
-        <div key={exercise.id}>
-          <h3>{exercise.name}</h3>
-          <p>{exercise.muscleGroup}</p>
-          <p>{exercise.description}</p>
-        </div>
-      ))}
+      <div className="exercise-guide__grid">
+        {exercises.map((exercise) => (
+          <article key={exercise.id} className="exercise-card">
+            <h2 className="exercise-card__name">{exercise.name}</h2>
+            <span className="exercise-card__badge">{exercise.muscleGroup}</span>
+            <p className="exercise-card__description">{exercise.description}</p>
+          </article>
+        ))}
+      </div>
     </div>
   );
 }
+
+export default ExerciseGuide;
