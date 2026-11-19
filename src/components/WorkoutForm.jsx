@@ -1,26 +1,49 @@
 import { useState } from "react";
 
-export default function WorkoutForm() {
+export default function WorkoutForm({ members = [] }) {
+  const [member, setMember] = useState("");
   const [exerciseName, setExerciseName] = useState("");
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
 
   function handleSubmit(e) {
-   e.preventDefault();
-   alert(
-     "Exercise: " + exerciseName +
-     "\nSets: " + sets +
-     "\nReps: " + reps +
-     "\nWeight: " + weight + " lbs"
+    e.preventDefault();
+
+    const selectedMember = members.find((m) => String(m.id) === member);
+
+    alert(
+      "Member: " + selectedMember.name +
+      "\nExercise: " + exerciseName +
+      "\nSets: " + sets +
+      "\nReps: " + reps +
+      "\nWeight: " + weight + " lbs"
     );
   }
   return (
     <div>
-      <h2>Add Workout</h2>
-      <p>Enter your workout details below.</p>
-
+      <h2>Assign Workout</h2>
+      <p>Select a member and add a workout</p>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="member">Select Member: </label>
+          <select
+            id="member"
+            value={member}
+            onChange={(e) => setMember(e.target.value)}
+            required
+          >
+            <option value="">
+              {members.length === 0 ? "No members available" : "Select a member"}
+            </option>
+
+            {members.map((m) => (
+              <option key={m.id} value={m.id}>
+                {m.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <div>
           <label>Exercise Name: </label>
           <input type="text" placeholder="Enter exercise name" value={exerciseName} onChange={(e) => setExerciseName(e.target.value)} required/>
@@ -41,7 +64,7 @@ export default function WorkoutForm() {
           <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} required/>
         </div>
 
-        <button type="submit">Add Workout</button>
+        <button type="submit">Assign Workout</button>
       </form>
     </div>
   );
