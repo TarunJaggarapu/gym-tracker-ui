@@ -8,18 +8,22 @@ export default function WorkoutForm({ members = [] }) {
   const [weight, setWeight] = useState("");
 
   function handleSubmit(e) {
-   e.preventDefault();
-   alert(
-     "Exercise: " + exerciseName +
-     "\nSets: " + sets +
-     "\nReps: " + reps +
-     "\nWeight: " + weight + " lbs"
+    e.preventDefault();
+
+    const selectedMember = members.find((m) => String(m.id) === member);
+
+    alert(
+      "Member: " + selectedMember.name +
+      "\nExercise: " + exerciseName +
+      "\nSets: " + sets +
+      "\nReps: " + reps +
+      "\nWeight: " + weight + " lbs"
     );
   }
   return (
     <div>
-      <h2>Add Workout</h2>
-      <p>Enter your workout details below.</p>
+      <h2>Assign Workout</h2>
+      <p>Select a member and add a workout</p>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="member">Select Member: </label>
@@ -60,7 +64,7 @@ export default function WorkoutForm({ members = [] }) {
           <input type="number" min="0" value={weight} onChange={(e) => setWeight(e.target.value)} required/>
         </div>
 
-        <button type="submit">Add Workout</button>
+        <button type="submit">Assign Workout</button>
       </form>
     </div>
   );
