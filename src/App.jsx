@@ -3,6 +3,7 @@ import { GymTrackerUI } from './pages/gymtrackerui';
 import WorkoutForm from './components/WorkoutForm';
 import { MemberProfileForm } from './components/MemberProfileForm';
 import ExerciseGuide from './ExerciseGuide';
+import WorkoutList from './components/WorkoutList';
 
 export function App() {
   const [members, setMembers] = useState([]);
@@ -38,6 +39,7 @@ export function App() {
         <p>Welcome to the Gym Workout Tracker!</p>
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
+        <WorkoutList workouts={workouts} />
         <ExerciseGuide />
       </div>
     </GymTrackerUI>
