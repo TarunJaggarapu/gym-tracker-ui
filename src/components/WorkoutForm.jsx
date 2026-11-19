@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function WorkoutForm({ members = [] }) {
+export default function WorkoutForm({ members = [], onAddWorkout }) {
   const [member, setMember] = useState("");
   const [exerciseName, setExerciseName] = useState("");
   const [sets, setSets] = useState("");
@@ -12,14 +12,21 @@ export default function WorkoutForm({ members = [] }) {
 
     const selectedMember = members.find((m) => String(m.id) === member);
 
-    alert(
-      "Member: " + selectedMember.name +
-      "\nExercise: " + exerciseName +
-      "\nSets: " + sets +
-      "\nReps: " + reps +
-      "\nWeight: " + weight + " lbs"
-    );
+    if (!selectedMember) {
+      return;
+    }
+
+    onAddWorkout({
+      memberId: selectedMember.id,
+      exerciseName: exerciseName,
+      sets: sets,
+      reps: reps,
+      weight: weight
+    });
+
+    alert("Workout assigned to " + selectedMember.name);
   }
+  
   return (
     <div>
       <h2>Assign Workout</h2>
