@@ -22,7 +22,7 @@ export function App() {
         <h2>Gym Workout Tracker</h2>
         <p>Welcome to the Gym Workout Tracker!</p>
         <MemberProfileForm onAddMember={addMember} />
-        <WorkoutForm />
+        <WorkoutForm members={members} />
         <ExerciseGuide />
       </div>
     </GymTrackerUI>
