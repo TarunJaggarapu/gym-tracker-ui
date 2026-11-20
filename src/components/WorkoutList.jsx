@@ -1,11 +1,35 @@
+import { useState } from 'react';
 
-function WorkoutList({ workouts }) {
+function WorkoutList({ members = [], workouts }) {
+  const [selectedMember, setSelectedMember] = useState("");
+
+  const filteredWorkouts = workouts.filter(
+    (workout) => String(workout.memberId) === selectedMember
+  );
+
   return (
     <div>
-      <h2>My Workout Records</h2>
+      <h2>My Assigned Workouts</h2>
+
+      <div>
+        <label htmlFor="view-member">Select Member: </label>
+        <select
+          id="view-member"
+          value={selectedMember}
+          onChange={(e) => setSelectedMember(e.target.value)}
+        >
+          <option value="">Select a member</option>
+
+          {members.map((m) => (
+            <option key={m.id} value={m.id}>
+              {m.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <ul>
-        {workouts.map((workout) => (
+        {filteredWorkouts.map((workout) => (
           <li key={workout.id}>
             <h3>{workout.exerciseName}</h3>
             <p>Sets: {workout.sets}</p>
