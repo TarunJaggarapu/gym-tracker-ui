@@ -1,25 +1,40 @@
 import { useState } from "react";
 
-export default function WorkoutForm({ members = [] }) {
+export default function WorkoutForm({ members = [], onAddWorkout }) {
   const [member, setMember] = useState("");
   const [exerciseName, setExerciseName] = useState("");
   const [sets, setSets] = useState("");
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
 
+  function handleMemberChange(e) {
+  setMember(e.target.value);
+  setExerciseName("");
+  setSets("");
+  setReps("");
+  setWeight("");
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
 
     const selectedMember = members.find((m) => String(m.id) === member);
 
-    alert(
-      "Member: " + selectedMember.name +
-      "\nExercise: " + exerciseName +
-      "\nSets: " + sets +
-      "\nReps: " + reps +
-      "\nWeight: " + weight + " lbs"
-    );
+    if (!selectedMember) {
+      return;
+    }
+
+    onAddWorkout({
+      memberId: selectedMember.id,
+      exerciseName: exerciseName,
+      sets: sets,
+      reps: reps,
+      weight: weight
+    });
+
+    alert("Workout assigned to " + selectedMember.name);
   }
+
   return (
     <div>
       <h2>Assign Workout</h2>
@@ -30,7 +45,7 @@ export default function WorkoutForm({ members = [] }) {
           <select
             id="member"
             value={member}
-            onChange={(e) => setMember(e.target.value)}
+            onChange={handleMemberChange}
             required
           >
             <option value="">
