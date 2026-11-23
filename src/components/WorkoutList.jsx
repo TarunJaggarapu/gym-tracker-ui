@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import WorkoutCompletion from './WorkoutCompletion';
+import MemberProgress from './MemberProgress';
 function WorkoutList({ members = [], workouts, onToggle }) {
   const [selectedMember, setSelectedMember] = useState("");
 
@@ -44,6 +45,9 @@ function WorkoutList({ members = [], workouts, onToggle }) {
           </li>
         ))}
       </ul>
+      {selectedMember && (
+        <MemberProgress workouts={filteredWorkouts} />
+      )}
     </div>
   );
 }
