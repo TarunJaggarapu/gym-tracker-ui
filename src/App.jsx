@@ -5,11 +5,11 @@ import { MemberProfileForm } from './components/MemberProfileForm';
 import ExerciseGuide from './ExerciseGuide';
 import WorkoutList from './components/WorkoutList';
 import Navigation from './components/Navigation';
+import OwnerWorkoutManagement from './components/OwnerWorkoutManagement';
 
 export function App() {
   const [members, setMembers] = useState([]);
   const [workouts, setWorkouts] = useState([]);
-  const [selectedMember, setSelectedMember] = useState("");
 
   function addMember(profile) {
     const newMember = {
@@ -43,6 +43,7 @@ export function App() {
         <Navigation />
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
+        <OwnerWorkoutManagement members={members} workouts={workouts} />
         <WorkoutList members={members} workouts={workouts} />
         <ExerciseGuide />
       </div>
