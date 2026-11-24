@@ -33,8 +33,22 @@ export function App() {
       weight: workout.weight,
       status: "Pending"
     };
-
+    
     setWorkouts([...workouts, newWorkout]);
+  }
+  function toggleWorkoutStatus(workoutId) {
+    setWorkouts((currentWorkouts) =>
+      currentWorkouts.map((workout) =>
+        workout.id === workoutId
+          ? {
+              ...workout,
+              status: workout.status === "Completed"
+                ? "Pending"
+                : "Completed"
+            }
+          : workout
+      )
+    );
   }
 
   function updateWorkout(workoutId, updatedDetails) {
@@ -61,7 +75,8 @@ export function App() {
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
         <OwnerWorkoutManagement members={members} workouts={workouts} onUpdateWorkout={updateWorkout} onDeleteWorkout={deleteWorkout} />
-        <WorkoutList members={members} workouts={workouts} />
+        <WorkoutList members={members} workouts={workouts} onToggle={toggleWorkoutStatus} />
+
         <ExerciseGuide />
       </div>
     </GymTrackerUI>
