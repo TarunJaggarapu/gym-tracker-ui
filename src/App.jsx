@@ -74,19 +74,8 @@ export function App() {
         <Navigation />
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
-
-        <OwnerWorkoutManagement
-          members={members}
-          workouts={workouts}
-          onUpdateWorkout={updateWorkout}
-          onDeleteWorkout={deleteWorkout}
-        />
-
-        <WorkoutList
-          members={members}
-          workouts={workouts}
-          onToggle={toggleWorkoutStatus}
-        />
+        <OwnerWorkoutManagement members={members} workouts={workouts} onUpdateWorkout={updateWorkout} onDeleteWorkout={deleteWorkout} />
+        <WorkoutList members={members} workouts={workouts} onToggle={toggleWorkoutStatus} />
 
         <ExerciseGuide />
       </div>
