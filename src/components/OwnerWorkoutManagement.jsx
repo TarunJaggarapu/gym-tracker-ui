@@ -1,9 +1,10 @@
 
 import { useState } from 'react';
 
-export default function OwnerWorkoutManagement({ members = [], workouts = [] }) {
+export default function OwnerWorkoutManagement({members = [], workouts = [], onUpdateWorkout}) {
   const [selectedMember, setSelectedMember] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
+  const [editingWorkout, setEditingWorkout] = useState(null);
 
   const filteredWorkouts = workouts.filter((workout) => {
     const matchesMember =
@@ -16,6 +17,36 @@ export default function OwnerWorkoutManagement({ members = [], workouts = [] }) 
 
     return matchesMember && matchesStatus;
   });
+
+  function handleEdit(workout) {
+    setEditingWorkout({ ...workout });
+  }
+
+  function handleEditChange(e) {
+    const { name, value } = e.target;
+
+    setEditingWorkout((previousWorkout) => ({
+      ...previousWorkout,
+      [name]: value
+    }));
+  }
+
+  function handleSave(e) {
+    e.preventDefault();
+
+    if (!editingWorkout.exerciseName.trim()) {
+      return;
+    }
+
+    onUpdateWorkout(editingWorkout.id, {
+      exerciseName: editingWorkout.exerciseName.trim(),
+      sets: editingWorkout.sets,
+      reps: editingWorkout.reps,
+      weight: editingWorkout.weight
+    });
+
+    setEditingWorkout(null);
+  }
 
   return (
     <div>
@@ -63,6 +94,7 @@ export default function OwnerWorkoutManagement({ members = [], workouts = [] }) 
             <th>Reps</th>
             <th>Weight (lbs)</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -80,11 +112,87 @@ export default function OwnerWorkoutManagement({ members = [], workouts = [] }) 
                 <td>{workout.reps}</td>
                 <td>{workout.weight}</td>
                 <td>{workout.status}</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleEdit(workout)}
+                  >
+                    Edit
+                  </button>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+
+      {editingWorkout && (
+        <div>
+          <h3>Edit Workout</h3>
+
+          <form onSubmit={handleSave}>
+            <div>
+              <label htmlFor="edit-exercise">Exercise Name: </label>
+              <input
+                id="edit-exercise"
+                type="text"
+                name="exerciseName"
+                value={editingWorkout.exerciseName}
+                onChange={handleEditChange}
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="edit-sets">Sets: </label>
+              <input
+                id="edit-sets"
+                type="number"
+                name="sets"
+                min="1"
+                value={editingWorkout.sets}
+                onChange={handleEditChange}
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="edit-reps">Reps: </label>
+              <input
+                id="edit-reps"
+                type="number"
+                name="reps"
+                min="1"
+                value={editingWorkout.reps}
+                onChange={handleEditChange}
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="edit-weight">Weight (lbs): </label>
+              <input
+                id="edit-weight"
+                type="number"
+                name="weight"
+                min="0"
+                value={editingWorkout.weight}
+                onChange={handleEditChange}
+                required
+              />
+            </div>
+
+            <button type="submit">Save Changes</button>
+
+            <button
+              type="button"
+              onClick={() => setEditingWorkout(null)}
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

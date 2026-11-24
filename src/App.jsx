@@ -34,6 +34,15 @@ export function App() {
     setWorkouts([...workouts, newWorkout]);
   }
 
+  function updateWorkout(workoutId, updatedDetails) {
+    setWorkouts((previousWorkouts) =>
+      previousWorkouts.map((workout) =>
+        workout.id === workoutId
+          ? { ...workout, ...updatedDetails }
+          : workout
+      )
+    );
+  }
   return (
     <GymTrackerUI>
       <div>
@@ -43,7 +52,7 @@ export function App() {
         <Navigation />
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
-        <OwnerWorkoutManagement members={members} workouts={workouts} />
+        <OwnerWorkoutManagement members={members} workouts={workouts} onUpdateWorkout={updateWorkout} />
         <WorkoutList members={members} workouts={workouts} />
         <ExerciseGuide />
       </div>
