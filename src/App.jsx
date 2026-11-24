@@ -28,9 +28,9 @@ export function App() {
       exerciseName: workout.exerciseName,
       sets: workout.sets,
       reps: workout.reps,
-      weight: workout.weight
+      weight: workout.weight,
+      status: "Pending"
     };
-
     setWorkouts([...workouts, newWorkout]);
   }
 
