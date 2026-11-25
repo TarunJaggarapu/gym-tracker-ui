@@ -7,6 +7,7 @@ import ExerciseGuide from './ExerciseGuide';
 import WorkoutList from './components/WorkoutList';
 import Navigation from './components/Navigation';
 import OwnerWorkoutManagement from './components/OwnerWorkoutManagement';
+import GymOwnerDashboard from './components/GymOwnerDashboard';
 
 export function App() {
   const [members, setMembers] = useState([]);
@@ -72,6 +73,7 @@ export function App() {
         <p>Welcome to the Gym Workout Tracker!</p>
 
         <Navigation />
+        <GymOwnerDashboard members={members} workouts={workouts} />
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
         <OwnerWorkoutManagement members={members} workouts={workouts} onUpdateWorkout={updateWorkout} onDeleteWorkout={deleteWorkout} />
