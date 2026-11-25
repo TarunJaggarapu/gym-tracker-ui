@@ -8,6 +8,7 @@ import WorkoutList from './components/WorkoutList';
 import Navigation from './components/Navigation';
 import OwnerWorkoutManagement from './components/OwnerWorkoutManagement';
 import GymOwnerDashboard from './components/GymOwnerDashboard';
+import MemberManagement from './components/MemberManagement';
 
 export function App() {
   const [members, setMembers] = useState([]);
@@ -74,6 +75,7 @@ export function App() {
 
         <Navigation />
         <GymOwnerDashboard members={members} workouts={workouts} />
+        <MemberManagement members={members} workouts={workouts} />
         <MemberProfileForm onAddMember={addMember} />
         <WorkoutForm members={members} onAddWorkout={addWorkout} />
         <OwnerWorkoutManagement members={members} workouts={workouts} onUpdateWorkout={updateWorkout} onDeleteWorkout={deleteWorkout} />
