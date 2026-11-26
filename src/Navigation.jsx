@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-// Build navigation buttons
+// Build navigation buttons for the Gym Tracker app. The buttons should allow the user to switch between the Profile and Workouts pages. When a button is clicked, the corresponding page content should be displayed below the buttons.
 function Navigation() {
   const [activePage, setActivePage] = useState("Profile");
 
