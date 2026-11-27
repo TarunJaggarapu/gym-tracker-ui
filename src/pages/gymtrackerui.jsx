@@ -1,6 +1,8 @@
 import React from 'react';
 import './gymtrackeruimainpage.css';
 
+
+// Build the main layout for the Gym Tracker app.
 export function GymTrackerUI({ children }) {
     return (
         <div className="layout-container">
