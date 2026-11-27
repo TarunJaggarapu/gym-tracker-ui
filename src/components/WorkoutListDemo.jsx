@@ -1,6 +1,6 @@
 
 import WorkoutList from './WorkoutList';
-
+// Build a demo component that renders the WorkoutList component with sample data. The demo should provide a list of sample workouts and allow the user to select a member from a dropdown menu to view their assigned workouts.
 export default function WorkoutListDemo() {
   const sampleWorkouts = [
     {
