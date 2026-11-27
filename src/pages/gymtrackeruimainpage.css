@@ -1,3 +1,5 @@
+
+/* Build the main layout for the Gym Tracker app. This layout should include a header with the app title, a content area for displaying the Profile and Workouts pages, and a footer with copyright information. The layout should be responsive and adapt to different screen sizes.*/
 .layout-container {
   display: flex;
   flex-direction: column;
