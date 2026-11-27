@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { GymTrackerUI } from './pages/gymtrackerui';
 import WorkoutForm from './components/WorkoutForm';
 import { MemberProfileForm } from './components/MemberProfileForm';
@@ -7,11 +7,12 @@ import ExerciseGuide from './ExerciseGuide';
 import WorkoutList from './components/WorkoutList';
 import RoleSelector from './components/RoleSelector';
 import RoleNavigation from './components/RoleNavigation';
+import OwnerWorkoutManagement from './components/OwnerWorkoutManagement';
 
-export default function App() {
+export function App() {
   const [members, setMembers] = useState([]);
   const [workouts, setWorkouts] = useState([]);
-  const [selectedMember, setSelectedMember] = useState("");
+  const nextWorkoutId = useRef(1);
 
   // Remember the selected role.
   const [role, setRole] = useState("Member");
@@ -43,15 +44,49 @@ export default function App() {
 
   function addWorkout(workout) {
     const newWorkout = {
-      id: workouts.length + 1,
+      id: nextWorkoutId.current++,
       memberId: workout.memberId,
       exerciseName: workout.exerciseName,
       sets: workout.sets,
       reps: workout.reps,
-      weight: workout.weight
+      weight: workout.weight,
+      status: "Pending"
     };
 
     setWorkouts([...workouts, newWorkout]);
+  }
+
+  function toggleWorkoutStatus(workoutId) {
+    setWorkouts((currentWorkouts) =>
+      currentWorkouts.map((workout) =>
+        workout.id === workoutId
+          ? {
+              ...workout,
+              status: workout.status === "Completed"
+                ? "Pending"
+                : "Completed"
+            }
+          : workout
+      )
+    );
+  }
+
+  function updateWorkout(workoutId, updatedDetails) {
+    setWorkouts((previousWorkouts) =>
+      previousWorkouts.map((workout) =>
+        workout.id === workoutId
+          ? { ...workout, ...updatedDetails }
+          : workout
+      )
+    );
+  }
+
+  function deleteWorkout(workoutId) {
+    setWorkouts((previousWorkouts) =>
+      previousWorkouts.filter(
+        (workout) => workout.id !== workoutId
+      )
+    );
   }
 
   function renderSection() {
@@ -83,9 +118,18 @@ export default function App() {
           return (
             <>
               <h3>All Workouts</h3>
+
+              <OwnerWorkoutManagement
+                members={members}
+                workouts={workouts}
+                onUpdateWorkout={updateWorkout}
+                onDeleteWorkout={deleteWorkout}
+              />
+
               <WorkoutList
                 members={members}
                 workouts={workouts}
+                onToggle={toggleWorkoutStatus}
               />
             </>
           );
@@ -106,6 +150,7 @@ export default function App() {
             <WorkoutList
               members={members}
               workouts={workouts}
+              onToggle={toggleWorkoutStatus}
             />
           </>
         );
@@ -153,4 +198,3 @@ export default function App() {
     </GymTrackerUI>
   );
 }
-
