@@ -7,6 +7,7 @@ export default function WorkoutForm({ members = [], onAddWorkout }) {
   const [reps, setReps] = useState("");
   const [weight, setWeight] = useState("");
 
+  // Handle member selection change 
   function handleMemberChange(e) {
   setMember(e.target.value);
   setExerciseName("");
