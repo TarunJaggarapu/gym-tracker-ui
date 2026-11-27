@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// Build a component that displays a list of workouts assigned to a selected member. The component should allow the user to select a member from a dropdown menu, and then display the workouts assigned to that member below the dropdown. If no member is selected, display a message prompting the user to select a member.
 
 function WorkoutList({ members = [], workouts }) {
   const [selectedMember, setSelectedMember] = useState("");
