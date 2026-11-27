@@ -49,3 +49,5 @@ export function App() {
     </GymTrackerUI>
   );
 }
+
+export default App;
